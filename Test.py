@@ -1,6 +1,8 @@
 import time
 import flipperzero
 
+
+
 def play_frequency(frequency: float):
   volume = 0.8
 
@@ -14,6 +16,7 @@ def play_frequency(frequency: float):
     time.sleep_ms(1)
 
   flipperzero.speaker_stop()
+
 
 play_frequency(100.0)
 play_frequency(200.0)
