@@ -1,42 +1,25 @@
-# my_flipper_script.py
-import flipper
-from time import sleep
+import time
+import flipperzero
 
-# Flipper-Objekt abrufen
-f = flipper.Flipper()
+def play_frequency(frequency: float):
+  volume = 0.8
 
-# Display löschen und Text ausgeben
-f.display.text(10, 10, "Hallo Flipper!", 1)
-f.display.update()
+  flipperzero.speaker_start(frequency, volume)
 
-# Hauptschleife
-while True:
-    # Knöpfe abfragen
-    buttons = f.input.get()
+  for _ in range(0, 150):
+    volume *= 0.9945679
 
-    if buttons.ok:
-        f.display.text(10, 30, "OK gedrückt", 1)
-        f.display.update()
-        sleep(0.2)
+    flipperzero.speaker_set_volume(volume)
 
-    elif buttons.back:
-        f.display.text(10, 30, "Zurück gedrückt", 1)
-        f.display.update()
-        sleep(0.2)
+    time.sleep_ms(1)
 
-    elif buttons.up:
-        f.display.text(10, 30, "Pfeil Hoch", 1)
-        f.display.update()
-        sleep(0.2)
+  flipperzero.speaker_stop()
 
-    elif buttons.down:
-        f.display.text(10, 30, "Pfeil Runter", 1)
-        f.display.update()
-        sleep(0.2)
-
-    else:
-        # Bildschirm kurz löschen
-        f.display.clear()
-        f.display.text(10, 10, "Hallo Flipper!", 1)
-        f.display.update()
-        sleep(0.1)
+play_frequency(100.0)
+play_frequency(200.0)
+play_frequency(300.0)
+play_frequency(500.0)
+play_frequency(800.0)
+play_frequency(1300.0)
+play_frequency(2100.0)
+play_frequency(3400.0)
