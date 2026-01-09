@@ -21,7 +21,7 @@ def draw_signal():
     for i in range(100):
         i += index
 
-        if i > len(signal):
+        if i >= len(signal):
             break
 
         duration = int(signal[i] / 100)
@@ -74,7 +74,8 @@ def on_input(button, type):
     # scroll right upon button left
     if button == f0.INPUT_BUTTON_RIGHT and type == f0.INPUT_TYPE_SHORT:
         index += 1
-        index %= len(signal)
+        if len(signal):
+            index %= len(signal)
 
         draw_signal()
 
